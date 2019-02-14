@@ -24,7 +24,7 @@ class Complex:
     #define formatted print
     def __repr__(self):
         com_str = ""
-        com_str += "(" + "%s" % ("%g" % self.real) + "%s" % ("%+-g" % self.imag) + "i)"  #%+-g means display sign
+        com_str += "(" + "%s" % ("%g" % self.real) + num_to_str(self.imag) + "i)"  #%+-g means display sign
         return com_str
     #define formatted string for print()
     def __str__(self):
@@ -76,7 +76,14 @@ class Complex:
         if self.real == o.real and self.imag == o.imag:
             return True
         else:
-            return False 
+            return False
+
+def num_to_str(num):
+    if(num >= 0):
+        return " + " + str(num)
+    else:
+        return " - " + str(abs(num))
+
 
 def div_line():
     print(50 * "/")
