@@ -70,12 +70,12 @@ Remind yourself about complex numbers. Read chapters 15 and 16 in the textbook.
 and it should return a tuple of all of the roots of the function. Sometimes these will be real numbers, sometimes they will be complex.  You should return a tuple containing all the roots you find.  Repeated roots count as one root.
 ## Grading
 - [ ] Working constructor: 1 for each case [3 points total]
-- [ ] `__repr__` and `__str__` work as described: 1 for simple case, 2 for more complex case [2 points total]
-- [ ] Addition works: two complex numbers (1 point); one complex and one integer or float (1 point); one integer or float and one complex number (1 point).  [3 points total]
-- [ ] Subtraction works for all three cases (like addition).  [1 point total]
-- [ ] Multiplication works for all three cases (like addition).  [1 point total]
-- [ ] Division works for all three cases (like addition).  [1 point total]
-- [ ] Negation and complex conjugate work.  [1 point total]
+- [x] `__repr__` and `__str__` work as described: 1 for simple case, 2 for more complex case [2 points total]
+- [x] Addition works: two complex numbers (1 point); one complex and one integer or float (1 point); one integer or float and one complex number (1 point).  [3 points total]
+- [x] Subtraction works for all three cases (like addition).  [1 point total]
+- [x] Multiplication works for all three cases (like addition).  [1 point total]
+- [x] Division works for all three cases (like addition).  [1 point total]
+- [x] Negation and complex conjugate work.  [1 point total]
 - [ ] Extra Credit: Quadratic roots calculated correctly: two real roots (1 point); one root (1 point); two complex roots (1 point).  [3 points total]
 ## What to Hand In
 A zip or tar file of your code: `complex.py`, `roots.py`, and any testing code.
