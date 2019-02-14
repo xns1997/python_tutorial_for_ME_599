@@ -1,5 +1,5 @@
 # Lab 5
-* Due Friday by <span style="color: red">11:59pm</red> Points <b> 12 </b>
+* Due Friday by <font color:red> 11:59pm </font> Points <b> 12 </b>
 * Submitting a file upload File Types `zip, tar, and tgz`
 
 ## Purpose
