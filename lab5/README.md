@@ -86,4 +86,5 @@ A zip or tar file of your code: `complex.py`, `roots.py`, and any testing code.
 <a href="https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types">Operator Overloading</a></br>
 <a href="https://docs.python.org/3/library/math.html?highlight=math#math.pow">Power</a></br>
 <a href="https://docs.python.org/3/library/math.html?highlight=math#math.sqrt">Square Root</a></br>
-
+\
+<img src="./2000px-Python-logo-notext.svg.png" width = "100" height = "100" />
