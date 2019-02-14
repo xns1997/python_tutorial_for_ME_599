@@ -1,5 +1,5 @@
 # Lab 5
-* Due Friday by <font color:red> 11:59pm </font> Points <b> 12 </b>
+* Due Friday by 11:59pm Points <b> 12 </b>
 * Submitting a file upload File Types `zip, tar, and tgz`
 
 ## Purpose
@@ -80,4 +80,10 @@ and it should return a tuple of all of the roots of the function. Sometimes thes
 ## What to Hand In
 A zip or tar file of your code: `complex.py`, `roots.py`, and any testing code.
 ## Useful Link
+<a href="https://docs.python.org/3/reference/datamodel.html#object.__init__">Constructor</a></br>
+<a href="https://docs.python.org/3/reference/datamodel.html#object.__repr__">The “Official” String Representation</a></br>
+<a href="https://docs.python.org/3/reference/datamodel.html#object.__str__">Printable String Representation</a></br>
+<a href="https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types">Operator Overloading</a></br>
+<a href="https://docs.python.org/3/library/math.html?highlight=math#math.pow">Power</a></br>
+<a href="https://docs.python.org/3/library/math.html?highlight=math#math.sqrt">Square Root</a></br>
 
