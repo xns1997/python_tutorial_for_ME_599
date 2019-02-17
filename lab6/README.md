@@ -45,4 +45,4 @@ Hand in a single file, called integrate.py, with all of your code in it.  We wil
 Everything you do for this lab should be your own work. Don't look up the answers on the web, or copy them from any other source. You can look up general information about Python on the web, but no copying code you find there. Read the code, close the browser, then write your own code.
 
 ## Useful Link
-<a href="https://en.wikipedia.org/wiki/Riemann_sum"
+<a href="https://en.wikipedia.org/wiki/Riemann_sum">黎曼积分</a>
