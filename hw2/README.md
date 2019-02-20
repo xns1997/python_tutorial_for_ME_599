@@ -44,16 +44,16 @@ Associate Professor: 3
 * 5. Think about how you're going to split up your code into different files, functions, classes, etc.  Again, we're not going to specify this for you, so you should give it some thought before you start writing code.
 
 ## Grading
-- [] 1. Command-line arguments work. [1 point]
-- [] 2. Connects to directory site, and makes a valid query.  [1 point]
-- [] 3. Extracts some information from the returned query. [1 point]
-- [] 4. Extracts four attributes and stores them (0.5 points each for extraction). [2 points]
-- [] 5. Encapsulates data about a person in a reasonable way.  [1 point]
-- [] 6. Code is structured appropriately (functions, classes, etc), with suitable comments.  [1 point]
-- [] 7. Prints out information as shown. [1 point]
-- [] 8. Deals with errors reasonably, in the case of no hits (1 point) and many hits (1 point) [2 points]
-- [] 9. Extra Credit: Prints out multiple names in the event of multiple hits (1 point) and deals with the case when there are too many matches, such as when searching for "Smith"(1 point).  [2 points]
-- [] 10. Extra Credit: Correct MIME position titles (1 point) and counts (1 point). [2 points]
+- [ ] 1. Command-line arguments work. [1 point]
+- [ ] 2. Connects to directory site, and makes a valid query.  [1 point]
+- [ ] 3. Extracts some information from the returned query. [1 point]
+- [ ] 4. Extracts four attributes and stores them (0.5 points each for extraction). [2 points]
+- [ ] 5. Encapsulates data about a person in a reasonable way.  [1 point]
+- [ ] 6. Code is structured appropriately (functions, classes, etc), with suitable comments.  [1 point]
+- [ ] 7. Prints out information as shown. [1 point]
+- [ ] 8. Deals with errors reasonably, in the case of no hits (1 point) and many hits (1 point) [2 points]
+- [ ] 9. Extra Credit: Prints out multiple names in the event of multiple hits (1 point) and deals with the case when there are too many matches, such as when searching for "Smith"(1 point).  [2 points]
+- [ ] 10. Extra Credit: Correct MIME position titles (1 point) and counts (1 point). [2 points]
 
 ## What to Turn In
 A single file with all of your code in it.
