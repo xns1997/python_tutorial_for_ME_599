@@ -1,22 +1,22 @@
 # Homework 2
-* Due Mar 3 by 11:59pm 
-* 10 points
-* zip, tar,tgz
+* ``` Due Mar 3 by 11:59pm ```
+* <b>10</b> points
+* ```zip, tar,tgz```
 
 ## Purpose
 The main purpose of this homework is to bring together some things you've learned in class (classes, web scraping, and others) into a working program that does something useful.
 
 ## Purpose
-* 1. Go to http://directory.oregonstate.edu/ (Links to an external site.)Links to an external site. and play around with finding people.  Use your web browser to see what the underlying HTML code looks like when you get a query result. 
+* 1. Go to <a href="http://directory.oregonstate.edu/">http://directory.oregonstate.edu/ </a> (Links to an external site.)Links to an external site. and play around with finding people.  Use your web browser to see what the underlying HTML code looks like when you get a query result. 
 
 * 2. Write some code that, given a name, finds that person in the directory, and returns their directory name, title, department, and phone number.
 
 * 3. Wrap your code up in a program, called directory.py, that can be called like this:
-```python
+```
 directory.py Edward Feser
 ```
 and returns
-```python
+```
 Name: Feser, Edward
 Title: Executive 1-Provost/Exec VP
 Department: Provost / Exec Vice Pres
@@ -26,7 +26,7 @@ Phone: 1-541-737-0731
 * 4. Extra Credit: Make the system work when there are multiple hits, and print out the information for each of them.
 
 * 5. Extra Credit: Write another program, called mime_count.py, that prints out all the job titles in MIME, and the number of people that hold each position:
-```python
+```
 Assistant Professor: 23
 Associate Professor: 3
 [and so on]
@@ -59,4 +59,4 @@ Associate Professor: 3
 A single file with all of your code in it.
 
 ## Useful Link
-<a href="http://directory.oregonstate.edu/">
+<a href="http://directory.oregonstate.edu/"><\a>
