@@ -30,14 +30,19 @@ Where f is the function, a and b are the bounds of the definite integral, (c, d)
 3.You should use Monte Carlo integration Links to an external site.for calculate the definite integral in the second question.  Again, there are several ways to do this, and you're free to pick the one you want. I'd advise starting with a simple one, using rejection samplingLinks to an external site..  The basic idea of this is to generate a sample point within the bounding box of the area (using the a, b, c, and d).  Count the number of times that this point lies within the area. The proportion of points that end up inside then lets you calculate the area, based on the area of the bounding box.  We talked about this briefly in class.
 
 ## Grading
-- [ ] 1.A Riemann sum integration function that works (1 point), is robust to bad arguments (1 point), and returns the correct answer (2 points). [4 points total]
-
-- [ ] 2.A Monte Carlo integration function that works (1 point), is robust to bad arguments (1 point), and returns the correct answer (2 points). [4 points total]
-
-- [ ] 3.A graph with appropriate labels and title (1 point) that shows the convergence behavior of the two functions (1 point).  [2 points total]
-
-- [ ] 4.A function that correctly approximates pi (2 points).  [2 points total]
-
+### 1. Riemann sum [4 points total]
+- [X] A Riemann sum integration function that works (1 point) 
+- [ ] The function is robust to bad arguments (1 point)
+- [ ] The function returns the correct answer (2 points)
+### 2. Monte Carlo integration [4 points total]
+- [ ] A Monte Carlo integration function that works (1 point), 
+- [ ] The function is robust to bad arguments (1 point),
+- [ ] The function returns the correct answer (2 points). 
+### 3. Graph [2 points total]
+- [ ] A graph with appropriate labels and title (1 point) 
+- [ ] The graph shows the convergence behavior of the two functions (1 point).  
+### 4. Approximates pi [2 points total]
+- [ ] A function that correctly approximates pi (2 points).  
 ## What To Hand In
 Hand in a single file, called integrate.py, with all of your code in it.  We will import this file for our testing.  We should be able to generate your graphs by running the file as an executable.
 
