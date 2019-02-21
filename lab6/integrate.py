@@ -37,7 +37,6 @@ def integrate_mc(f, a, b,c,d, n  = 1000):
             if rand_y >= f(rand_x):
                 count += 1
      area = rec_area * count / n
-     print (area)
      return area
 
 def approximate_pi(n):
