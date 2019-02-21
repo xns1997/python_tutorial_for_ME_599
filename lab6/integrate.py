@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 def f(x):
     return x**2
 
+
 def integrate (f,a, b, n = 100):
      x = np.linspace(a,b,n)
      #print(x)
@@ -37,6 +38,24 @@ def integrate_mc(f, a, b,c,d, n  = 1000):
      print (area)
      return area
 
+def approximate_pi(n):
+    x_max = 1.0
+    x_min = -1.0
+    y_max = 1.0
+    y_min = -1.0
+    count = 0
+    rec_area = abs(x_max-x_min) * abs(y_max-y_min)
+    for i in range(n):
+        x = np.random.uniform(x_min,x_max)
+        y = np.random.uniform(y_min,y_max)
+        if (f(x)+f(y)) < 1:
+            count += 1
+        print("Process:{0}%".format(round((i + 1) * 100 / n)), end="\r")
+    print("")
+    area = rec_area * count / n 
+    return area
 
 integrate(f,1,100,100000)
 integrate_mc(f,1,100,1,100000,100000)
+pi = approximate_pi(100000)
+print(pi)
