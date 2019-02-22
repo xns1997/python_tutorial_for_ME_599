@@ -3,6 +3,7 @@
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
+from scipy.integrate import quad
 
 def f(x):
     return x**2
@@ -60,3 +61,13 @@ integrate(f,1,100,100000)
 integrate_mc(f,1,100,1,100000,100000)
 pi = approximate_pi(100000)
 print(pi)
+
+
+
+#Calculate the definite integral by hand in python built-in function and Plot the absolute error in the approximations
+w,err = quad(f,1,100)
+print(w,err)
+er1 = abs(w - Rm) / w
+er2 = abs(w - Mc) / w
+print(er1)
+print(er2)
