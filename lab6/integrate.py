@@ -21,7 +21,6 @@ def integrate (f,a, b, n = 100):
      for i  in range (n - 1):
          #print (y[i] , y[i + 1])
          area += (y[i] + y[i + 1]) * interval / 2
-     print(area)
      return area
 
 def integrate_mc(f, a, b,c,d, n  = 1000):
@@ -57,8 +56,12 @@ def approximate_pi(n):
     area = rec_area * count / n 
     return area
 
-integrate(f,1,100,100000)
-integrate_mc(f,1,100,1,100000,100000)
+Rm= integrate(f,1,100,100000)
+
+Mc = integrate_mc(f,1,100,1,1000000,1000000)
+
+print("Riemann: ",Rm)
+print("MC: ",Mc)
 pi = approximate_pi(100000)
 print(pi)
 
@@ -67,7 +70,9 @@ print(pi)
 #Calculate the definite integral by hand in python built-in function and Plot the absolute error in the approximations
 w,err = quad(f,1,100)
 print(w,err)
+
 er1 = abs(w - Rm) / w
 er2 = abs(w - Mc) / w
-print(er1)
-print(er2)
+print("%.20f%%" % er1)
+print( er2)
+
