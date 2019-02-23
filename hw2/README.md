@@ -44,7 +44,7 @@ Associate Professor: 3
 * 5. Think about how you're going to split up your code into different files, functions, classes, etc.  Again, we're not going to specify this for you, so you should give it some thought before you start writing code.
 
 ## Grading
-- [ ] 1. Command-line arguments work. [1 point]
+- [X] 1. Command-line arguments work. [1 point]
 - [ ] 2. Connects to directory site, and makes a valid query.  [1 point]
 - [ ] 3. Extracts some information from the returned query. [1 point]
 - [ ] 4. Extracts four attributes and stores them (0.5 points each for extraction). [2 points]
