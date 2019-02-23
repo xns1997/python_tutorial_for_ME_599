@@ -59,4 +59,4 @@ Associate Professor: 3
 A single file with all of your code in it.
 
 ## Useful Link
-<a href="http://directory.oregonstate.edu/"><\a>
+<a href="http://directory.oregonstate.edu/">Online Directory, Oregon State University </a>
