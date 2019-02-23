@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+
+import numpy as np
+from scipy.integrate import quad
+import matplotlib.pyplot as plt
+from inspect import isfunction
+
+#Definite a function
+def f(x):
+    return x**2+2*x+2
+
+#Create a function using a Reimann sum to calculate the definite integral of any function
+def integrate (f,in_a, in_b, n = 100):
+    if not(isfunction(f)):       #Judge the function
+        raise ValueError('the function is not exist')
+
+    if in_a < in_b:                 #Judge the a and b value
+        a,b = in_a,in_b
+    else:
+        b,a = in_a,in_b
+
+    x = np.linspace(a,b,n)           #create the number of the intervals
+    #print(x)
+    #y = []
+    interval = (b - a ) / n
+    #print (interval)
+    area  = 0
+    for i  in range (n - 1):
+        #print (y[i] , y[i + 1])
+        area += (f(x[i]) + f(x[i + 1])) * interval / 2       #Use Trapezoidal rule to calculate the area
+    #print(i)
+    return area
+
+#Create a function using Monte Carlo integration to calculate the definite integral of any function
+def integrate_mc(f, in_a, in_b, in_c, in_d, n=1000):
+    count = 0
+    flag = 0
+    if not(isfunction(f)):       #Judge the function
+        raise ValueError('the function is not exist')
+    if in_a < in_b:                  #Judge the a and b value
+        a,b = in_a,in_b
+    else:
+        b,a = in_a,in_b
+    if in_c < in_d:                  #Judge the c and d value
+        c, d = in_c, in_d
+    else:
+        d, c = in_c, in_d
+
+    for i in range(n):
+        rand_x = np.random.uniform(a, b)
+        rand_y = np.random.uniform(c, d)
+        if c < 0 and d >=0:
+            #print('1')
+            if f(rand_x) > 0 and rand_y >= 0:
+                    if abs(rand_y) <= abs(f(rand_x)):
+                        count += 1
+            elif f(rand_x) < 0 and rand_y <= 0:
+                    count -= 1
+            flag =1
+        elif c <0 and d <0:
+            #print('2')
+            if abs(rand_y) <= abs(f(rand_x)):
+                count -= 1
+            flag =2
+        else:
+            #print('3')
+            if abs(rand_y) <= abs(f(rand_x)):
+                count += 1
+    #print(count/n)
+
+    temp_i = abs((d-c)*(b-a)) * count / n
+    if flag == 1:
+        area = temp_i
+    elif flag==2:
+        area = temp_i + d*(b - a)
+    else:
+        area = temp_i + c*(b-a)
+    return area
+
+#Use rejection sampling to calculate pi
+def approximate_pi(g):
+    x_max = 1.0
+    x_min = -1.0
+    y_max = 1.0
+    y_min = -1.0                    #(x_min,x_max;y_min,y_max)
+    count = 0
+    rec_area = abs(x_max - x_min) * abs(y_max - y_min)
+    for i in range(g):
+        rand_x = np.random.uniform(x_min, x_max)
+        rand_y = np.random.uniform(y_min, y_max)
+        if (rand_x)**2 + (rand_y)**2 < 1:
+            count += 1
+        #print("Process:{0}%".format(round((i + 1) * 100 / g)), end="\r")
+    #print("")
+    area = rec_area * count / g
+    return area
+
+if __name__ == '__main__':
+#Calculate the definite integral by hand in python built-in function and Plot the absolute error in the approximations
+    w,err = quad(f,-3,5)
+    print('Stand Value:',w)
+    er1=[]
+    er2=[]
+    n = [ii for ii in range(10,10000,500)]
+#print(n)
+    for i in n:
+        Rm = integrate(f, -3, 5, i)
+        #print('Reimann sum:', Rm)
+        er1.append(abs(w - Rm))
+        #print(i)
+        Mc = integrate_mc(f, -3, 5, 0, 50, i)
+        #print('Monte Carlo integration:', Mc)
+        er2.append(abs(w - Mc))
+    plt.plot(n, er1,'-x',label = "Reimann Sum")
+    plt.plot(n, er2,'--x',label = "Monte Carlo integration")
+    plt.xlabel('Number of intervals')
+    plt.ylabel('Error Value')
+    plt.legend()
+    plt.title('Absolute Error of functions Plot')
+    plt.show()
+    print('Reimann sum:', Rm)
+    print('Monte Carlo integration:', Mc)
+    pi = approximate_pi(100000)
+    print('Pi value:',pi)
+    #print(er1)
+    #print(er2)
