@@ -45,8 +45,8 @@ Associate Professor: 3
 
 ## Grading
 - [X] 1. Command-line arguments work. [1 point]
-- [ ] 2. Connects to directory site, and makes a valid query.  [1 point]
-- [ ] 3. Extracts some information from the returned query. [1 point]
+- [X] 2. Connects to directory site, and makes a valid query.  [1 point]
+- [X] 3. Extracts some information from the returned query. [1 point]
 - [ ] 4. Extracts four attributes and stores them (0.5 points each for extraction). [2 points]
 - [ ] 5. Encapsulates data about a person in a reasonable way.  [1 point]
 - [ ] 6. Code is structured appropriately (functions, classes, etc), with suitable comments.  [1 point]
