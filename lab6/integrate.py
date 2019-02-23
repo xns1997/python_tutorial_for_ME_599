@@ -2,12 +2,14 @@
 
 import numpy as np
 import sys
+from math import sin
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
 
 def f(x):
     return x**2
-
+def fsin(x):
+    return sin(x)
 
 def integrate (f,a, b, n = 100):
      x = np.linspace(a,b,n)
@@ -30,12 +32,16 @@ def integrate_mc(f, a, b,c,d, n  = 1000):
      for i in range (n):
          rand_x = np.random.uniform(a, b)
          rand_y = np.random.uniform(c, d)
-         if rand_y > 0:
-            if rand_y <= f(rand_x):
-                count += 1
-         else:
-            if rand_y >= f(rand_x):
-                count += 1
+         #if rand_y > 0:
+         #  if rand_y <= f(rand_x):
+         #       count += 1
+         #else:
+         #   if rand_y >= f(rand_x):
+         #       count += 1
+         if (rand_y > 0 and f(rand_x) > rand_y):
+            count += 1
+         elif (rand_y < 0 and f(rand_x) < rand_y):
+            count -= 1
      area = rec_area * count / n
      return area
 
@@ -58,7 +64,7 @@ def approximate_pi(n):
 
 Rm= integrate(f,1,100,100000)
 
-Mc = integrate_mc(f,1,100,1,1000000,1000000)
+Mc = integrate_mc(fsin,1,100,-1,1,1000000)
 
 print("Riemann: ",Rm)
 print("MC: ",Mc)
