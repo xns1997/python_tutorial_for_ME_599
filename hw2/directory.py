@@ -42,6 +42,7 @@ def gen_people_obj():
     base = "o=orst.edu"
     name = make_name_query()
     result = l.search_s(base, ldap.SCOPE_SUBTREE, name)
+    print (result)
     people_obj = []
     for i in range (len(result)):
 
