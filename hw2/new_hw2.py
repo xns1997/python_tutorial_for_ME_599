@@ -36,7 +36,6 @@ class people:
             str += "  Phone:\t\t" + self.phone.replace(" ","-") + "\n"
         str += "  ONID Username:\t" + self.uid + "\n"
         str += " +---------------------+-----------------------------------+\n"
-        str += '\u001b[0m'
         return str
 
     def __str__(self):
@@ -57,7 +56,8 @@ def get_data_by_name():
             tag = datas[0].find_all('b')
             data = datas[0].find_all('dd')
             result = [data_con(tag,data)]
-            print('Result: \n',result[0])   
+            print('Result:') 
+            print(result[0])
         elif len(datas) > 1:
             links = soup.find_all('a', href=True,text=sys.argv[2] +", "+ sys.argv[1])
             #print(links[0]['href'])
