@@ -16,40 +16,90 @@ class people:
         self.uid = uid     #uid
     def __repr__(self):
         str = ""
-        str += "Name:\t" + self.name + "\n"
-        if self.pa == "E" :
-            str += "Primary Affiliation:\t" + "Employee" + "\n"
-            str += "Title:\t" + self.title + "\n"
-        elif self.pa == "S":
-            str += "Primary Affiliation:\t" + "Student" + "\n"
-        elif self.pa == "O":
-            str += "Primary Affiliation:\t" + "Other" + "\n"
+        str += " +---------------------+----------------------------------------+\n"
+        str += "  Name:\t\t\t" + self.name + "\n"
+        if self.pa == "Employee" :
+            str += "  Primary Affiliation:\t" + "Employee" + "\n"
+            str += "  Title:\t\t" + self.title + "\n"
+        elif self.pa == "Student":
+            str += "  Primary Affiliation:\t" + "Student" + "\n"
+        elif self.pa == "Other":
+            str += "  Primary Affiliation:\t" + "Other" + "\n"
         if self.dp != "Nah":
-            str += "Department:\t" + self.dp + "\n"
+            str += "  Department:\t\t" + self.dp + "\n"
         if self.phone != "0":
-            str += "Phone:\t" + self.phone.replace(" ","-") + "\n"
-        str += "ONID Username:\t" + self.uid + "\n"
+            str += "  Phone:\t\t" + self.phone.replace(" ","-") + "\n"
+        str += "  ONID Username:\t" + self.uid + "\n"
+        str += " +---------------------+----------------------------------------+\n"
+        str += '\u001b[0m'
         return str
 
     def __str__(self):
         return self.__repr__();
 
-def get_data():
-    try:
+def get_data_by_name():
         url_str = "http://directory.oregonstate.edu/?type=search&cn=" + sys.argv[1] +"+"+ sys.argv[2]
-        print(url_str)
+        #print(url_str)
         url = urlopen(url_str)
         html = str(url.read())
-        print(len(html))
+        #print(len(html))
         #print(html)
         soup = BeautifulSoup(html, 'html.parser')
         result = []
-        for k in soup.find_all('div',class_='record'):
-            print(k,"\n")
-            result += k
-        print(result[1])
-        print(str(result[1]))
-    except:
-        print("Nah")
+        datas = soup.find_all('div',class_='record')
+        #print('len: ',len(datas))
+        if len(datas) == 1:
+            tag = datas[0].find_all('b')
+            data = datas[0].find_all('dd')
+            result = [data_con(tag,data)]
+            print('result: \n',result[0])   
+        elif len(datas) > 1:
+            links = soup.find_all('a', href=True,text=sys.argv[2] +", "+ sys.argv[1])
+            #print(links[0]['href'])
+            for i in links:
+                url_str = "http://directory.oregonstate.edu" + i['href']
+                #print(url_str)
+                url = urlopen(url_str)
+                html = str(url.read())
+                each_soup = BeautifulSoup(html, 'html.parser')
+                datas = each_soup.find_all('div',class_='record')
+                tag = datas[0].find_all('b')
+                data = datas[0].find_all('dd')
+                result += [data_con(tag,data)]
+            for i in result:
+                print(i)
+        else:
+            print('Nah')
+  
+
+def data_con(tag,data):
+    name= ''
+    pa = ''
+    dp = 'Nah'
+    tt = 'Nah'
+    phone = '0'
+    uid = ''
+    for i in range (len(tag)):
+        if tag[i].text == 'Full Name':
+            name = data[i].text
+            #print(name)
+        elif tag[i].text == 'Primary Affiliation':
+            pa = data[i].text
+            #print(pa)
+        elif tag[i].text == 'Department':
+            dp = data[i].text
+            #print(dp)
+        elif tag[i].text == 'ONID Username':
+            uid = data[i].text
+            #print(uid)
+        elif tag[i].text == 'Office Phone Number':
+            phone = data[i].text
+            #print(phone)
+        elif tag[i].text == 'Title':
+            tt = data[i].text
+            #print(tt)
+
+    return people(name,pa,dp,uid,phone,tt)
+
 os.system("clear")
-get_data()
+get_data_by_name()
