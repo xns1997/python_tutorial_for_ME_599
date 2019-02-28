@@ -5,6 +5,11 @@ from urllib.request import urlopen
 import sys
 from bs4 import BeautifulSoup
 import os
+try:
+    import ldap
+except:
+    os.system("pip install python-ldap")
+    import ldap
 
 class people:
     def __init__(self, name, pa, dp, uid, phone = "0", title = "Nah"):
@@ -16,7 +21,7 @@ class people:
         self.uid = uid     #uid
     def __repr__(self):
         str = ""
-        str += " +---------------------+----------------------------------------+\n"
+        str += " +---------------------+-----------------------------------+\n"
         str += "  Name:\t\t\t" + self.name + "\n"
         if self.pa == "Employee" :
             str += "  Primary Affiliation:\t" + "Employee" + "\n"
@@ -30,7 +35,7 @@ class people:
         if self.phone != "0":
             str += "  Phone:\t\t" + self.phone.replace(" ","-") + "\n"
         str += "  ONID Username:\t" + self.uid + "\n"
-        str += " +---------------------+----------------------------------------+\n"
+        str += " +---------------------+-----------------------------------+\n"
         str += '\u001b[0m'
         return str
 
@@ -52,7 +57,7 @@ def get_data_by_name():
             tag = datas[0].find_all('b')
             data = datas[0].find_all('dd')
             result = [data_con(tag,data)]
-            print('result: \n',result[0])   
+            print('Result: \n',result[0])   
         elif len(datas) > 1:
             links = soup.find_all('a', href=True,text=sys.argv[2] +", "+ sys.argv[1])
             #print(links[0]['href'])
@@ -66,6 +71,7 @@ def get_data_by_name():
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
                 result += [data_con(tag,data)]
+            print('Results:\n')
             for i in result:
                 print(i)
         else:
@@ -101,5 +107,22 @@ def data_con(tag,data):
 
     return people(name,pa,dp,uid,phone,tt)
 
+def make_query(title,dp):
+    name = "(&(title=" + title + ")(osuDepartment="+dp+"))"
+    print(name)
+    return name
+
+def count_title(title,dp):
+    l = ldap.initialize('ldap://directory.oregonstate.edu:389')
+    base = "o=orst.edu"
+    query = make_query(title,dp)
+    #query =[title,dp]
+    result = l.search_s(base, ldap.SCOPE_SUBTREE, query)
+    #print (result)
+    print (title,": ",len(result))
+    
+
 os.system("clear")
 get_data_by_name()
+count_title('Assistant Professor','Sch of Mech/Ind/Mfg Engr')
+count_title('Associate Professor','Sch of Mech/Ind/Mfg Engr')
