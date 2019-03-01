@@ -1,4 +1,4 @@
-```Markdown
+
 # Homework 2
 * ``` Due Mar 3 by 11:59pm ```
 * <b>10</b> points
@@ -61,4 +61,4 @@ A single file with all of your code in it.
 
 ## Useful Link
 <a href="http://directory.oregonstate.edu/">Online Directory, Oregon State University </a>
-```
+
