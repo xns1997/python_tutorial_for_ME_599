@@ -61,11 +61,14 @@ def make_query():
 def get_data_by_name(name):
         url_str = "http://directory.oregonstate.edu/?type=search&cn=" + name
         #print(url_str)
+        '''
         url = urlopen(url_str)
         html = str(url.read())
         #print(len(html))
         #print(html)
         soup = BS(html, 'html.parser')
+        '''
+        soup = cook_soup(url_str)
         result = []
         datas = soup.find_all('div',class_='record')
         #print('len: ',len(datas))
@@ -82,9 +85,12 @@ def get_data_by_name(name):
             for i in links:
                 url_str = "http://directory.oregonstate.edu" + i['href']
                 #print(url_str)
+                '''
                 url = urlopen(url_str)
                 html = str(url.read())
                 each_soup = BS(html, 'html.parser')
+                '''
+                each_soup = cook_soup(url_str)
                 datas = each_soup.find_all('div',class_='record')
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
