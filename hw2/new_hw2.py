@@ -71,7 +71,7 @@ def get_data_by_name():
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
                 result += [data_con(tag,data)]
-            print('Results:\n')
+            print('Results:')
             for i in result:
                 print(i)
         else:
