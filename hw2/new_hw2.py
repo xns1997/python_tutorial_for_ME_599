@@ -40,9 +40,21 @@ class people:
 
     def __str__(self):
         return self.__repr__();
-
-def get_data_by_name():
-        url_str = "http://directory.oregonstate.edu/?type=search&cn=" + sys.argv[1] +"+"+ sys.argv[2]
+def make_query():
+    if (len(sys.argv) - 1) % 2 != 0 :
+        return None
+    else:
+        query = []
+        length = len(sys.argv)
+        for i in range (int(length/2)):
+            #print(2*i+1)
+            #print(2*i+2)
+            temp = sys.argv[2*i+1] + "+" + sys.argv[2*i+2]
+            query += [temp]
+        #print(query)   
+        return query
+def get_data_by_name(name):
+        url_str = "http://directory.oregonstate.edu/?type=search&cn=" + name
         #print(url_str)
         url = urlopen(url_str)
         html = str(url.read())
@@ -56,10 +68,11 @@ def get_data_by_name():
             tag = datas[0].find_all('b')
             data = datas[0].find_all('dd')
             result = [data_con(tag,data)]
-            print('Result:') 
+            print('Result: \n',name.replace('+',' ')) 
             print(result[0])
         elif len(datas) > 1:
-            links = soup.find_all('a', href=True,text=sys.argv[2] +", "+ sys.argv[1])
+            temp = name.split('+')
+            links = soup.find_all('a', href=True,text=temp[1] +", "+ temp[0])
             #print(links[0]['href'])
             for i in links:
                 url_str = "http://directory.oregonstate.edu" + i['href']
@@ -71,12 +84,18 @@ def get_data_by_name():
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
                 result += [data_con(tag,data)]
-            print('Results:')
+            print('Results:\n',name.replace('+',' '))
             for i in result:
                 print(i)
         else:
             print('Nah')
-  
+def search():
+    query = make_query()
+    try:
+        for name in query:
+            get_data_by_name(name) 
+    except:
+        print("Invalid Input")
 
 def data_con(tag,data):
     name= ''
@@ -106,7 +125,7 @@ def data_con(tag,data):
             #print(tt)
 
     return people(name,pa,dp,uid,phone,tt)
-
+'''
 def make_query(title,dp):
     name = "(&(title=" + title + ")(osuDepartment="+dp+"))"
     print(name)
@@ -120,9 +139,17 @@ def count_title(title,dp):
     result = l.search_s(base, ldap.SCOPE_SUBTREE, query)
     #print (result)
     print (title,": ",len(result))
-    
+'''    
+def count_tt(title):
+    url = urlopen('https://mime.oregonstate.edu/people')
+    html = str(url.read())
+    soup = BeautifulSoup(html, 'html.parser')
+    datas = soup.find_all(lambda tag:tag.name=="p" and title in tag.text )
+    print(title,": ",len(datas))
 
 os.system("clear")
-get_data_by_name()
-count_title('Assistant Professor','Sch of Mech/Ind/Mfg Engr')
-count_title('Associate Professor','Sch of Mech/Ind/Mfg Engr')
+search()
+count_tt("Assistant Professor")
+count_tt("Associate Professor")
+#count_title('Assistant Professor','Sch of Mech/Ind/Mfg Engr')
+#count_title('Associate Professor','Sch of Mech/Ind/Mfg Engr')
