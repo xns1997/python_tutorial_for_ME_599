@@ -3,8 +3,9 @@
 
 from urllib.request import urlopen
 import sys
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as BS
 import os
+from clear_console import clean_the_console
 try:
     import ldap
 except:
@@ -42,6 +43,10 @@ class people:
         return self.__repr__();
 def make_query():
     if (len(sys.argv) - 1) % 2 != 0 :
+        print("Wrong Name Length")
+        return None
+    elif len(sys.argv) == 1:
+        print("No Name")
         return None
     else:
         query = []
@@ -60,7 +65,7 @@ def get_data_by_name(name):
         html = str(url.read())
         #print(len(html))
         #print(html)
-        soup = BeautifulSoup(html, 'html.parser')
+        soup = BS(html, 'html.parser')
         result = []
         datas = soup.find_all('div',class_='record')
         #print('len: ',len(datas))
@@ -79,7 +84,7 @@ def get_data_by_name(name):
                 #print(url_str)
                 url = urlopen(url_str)
                 html = str(url.read())
-                each_soup = BeautifulSoup(html, 'html.parser')
+                each_soup = BS(html, 'html.parser')
                 datas = each_soup.find_all('div',class_='record')
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
@@ -88,7 +93,7 @@ def get_data_by_name(name):
             for i in result:
                 print(i)
         else:
-            print('Nah')
+            print('No This Guy')
 def search():
     query = make_query()
     try:
@@ -140,14 +145,26 @@ def count_title(title,dp):
     #print (result)
     print (title,": ",len(result))
 '''    
+def cook_soup(url_str):
+    try:
+        url = urlopen(url_str)
+        html = str(url.read())
+        soup = BS(html, 'html.parser')
+        return soup
+    except:
+        print('No this website')
+        return None
+    
+
+
 def count_tt(title):
     url = urlopen('https://mime.oregonstate.edu/people')
     html = str(url.read())
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BS(html, 'html.parser')
     datas = soup.find_all(lambda tag:tag.name=="p" and title in tag.text )
     print(title,": ",len(datas))
 
-os.system("clear")
+clean_the_console( )
 search()
 count_tt("Assistant Professor")
 count_tt("Associate Professor")
