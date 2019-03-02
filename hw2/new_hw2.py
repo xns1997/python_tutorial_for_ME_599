@@ -6,6 +6,8 @@ import sys
 from bs4 import BeautifulSoup as BS
 import os
 from clear_console import clean_the_console
+from tqdm import tqdm
+import time
 try:
     import ldap
 except:
@@ -76,8 +78,9 @@ def get_data_by_name(name):
             tag = datas[0].find_all('b')
             data = datas[0].find_all('dd')
             result = [data_con(tag,data)]
-            print('Result: \n',name.replace('+',' ')) 
-            print(result[0])
+            #print('Result:') 
+            #print(result[0])
+            return result
         elif len(datas) > 1:
             temp = name.split('+')
             links = soup.find_all('a', href=True,text=temp[1] +", "+ temp[0])
@@ -95,16 +98,22 @@ def get_data_by_name(name):
                 tag = datas[0].find_all('b')
                 data = datas[0].find_all('dd')
                 result += [data_con(tag,data)]
-            print('Results:\n',name.replace('+',' '))
-            for i in result:
-                print(i)
+            #print('Results:')
+            return result
         else:
             print('No This Guy')
+            return None
 def search():
     query = make_query()
+    pbar = tqdm(query)
     try:
-        for name in query:
-            get_data_by_name(name) 
+        for name in pbar:
+            pbar.update()
+            result = get_data_by_name(name) 
+            for data in result:
+                print(data)
+            
+            
     except:
         print("Invalid Input")
 
