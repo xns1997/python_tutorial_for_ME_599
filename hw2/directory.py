@@ -8,6 +8,9 @@ try:
 except:
     os.system("pip install python-ldap")
     import ldap
+'''
+Some problem when run ldap package.
+'''
 
 class people:
     def __init__(self, name, pa, dp, uid, phone = "0", title = "Nah"):
