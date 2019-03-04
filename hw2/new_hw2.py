@@ -145,7 +145,7 @@ def data_con(tag,data):
             #print(tt)
 
     return people(name,pa,dp,uid,phone,tt)
-'''
+
 def make_query(title,dp):
     name = "(&(title=" + title + ")(osuDepartment="+dp+"))"
     print(name)
@@ -159,7 +159,7 @@ def count_title(title,dp):
     result = l.search_s(base, ldap.SCOPE_SUBTREE, query)
     #print (result)
     print (title,": ",len(result))
-'''    
+
 def cook_soup(url_str):
     try:
         url = urlopen(url_str)
