@@ -78,7 +78,9 @@ class roots:
             self.x2 = Complex((0 - self.b)/(2 * self.a), (0 - sqrt_delta/(2 * self.a)))
             return self.x1 , self.x2
     
-
+'''
+Output is not very easy to see
+'''
 if __name__ == '__main__':
      clean_the_console()
      # two real roots
