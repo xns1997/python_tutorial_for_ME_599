@@ -29,6 +29,10 @@ class Complex:
     #define formatted string for print()
     def __str__(self):
         return self.__repr__()
+    
+  #output format is not very clearly. 
+    
+    
     #Overloading operator + OR plus
     def __add__(self, o):     #(binary +)
         if isinstance(o, (float,int)):    #Make sure the type of operands between the operator are the same.
