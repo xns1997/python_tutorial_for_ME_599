@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-
+'''
+python directory.py Naisen Xu
+python directory.py Naisen Xu Jialu Huang.....
+'''
 
 from urllib.request import urlopen
 import sys
@@ -8,11 +11,6 @@ import os
 from clear_console import clean_the_console
 from tqdm import tqdm
 import time
-try:
-    import ldap
-except:
-    os.system("pip install python-ldap")
-    import ldap
 
 class people:
     def __init__(self, name, pa, dp, uid, phone = "0", title = "Nah"):
@@ -26,13 +24,9 @@ class people:
         str = ""
         str += " +---------------------+-----------------------------------+\n"
         str += "  Name:\t\t\t" + self.name + "\n"
+        str += "  Primary Affiliation:\t" + self.pa + "\n"
         if self.pa == "Employee" :
-            str += "  Primary Affiliation:\t" + "Employee" + "\n"
             str += "  Title:\t\t" + self.title + "\n"
-        elif self.pa == "Student":
-            str += "  Primary Affiliation:\t" + "Student" + "\n"
-        elif self.pa == "Other":
-            str += "  Primary Affiliation:\t" + "Other" + "\n"
         if self.dp != "Nah":
             str += "  Department:\t\t" + self.dp + "\n"
         if self.phone != "0":
@@ -44,6 +38,7 @@ class people:
     def __str__(self):
         return self.__repr__();
 def make_query():
+    #print(sys.argv[0])
     if (len(sys.argv) - 1) % 2 != 0 :
         print("Wrong Name Length")
         return None
@@ -105,17 +100,16 @@ def get_data_by_name(name):
             return None
 def search():
     query = make_query()
-    pbar = tqdm(query)
+    #pbar = tqdm(query)
     try:
-        for name in pbar:
-            pbar.update()
+        for name in query:
+            #pbar.update()
             result = get_data_by_name(name) 
             for data in result:
-                print(data)
-            
-            
+                print(data)         
     except:
-        print("Invalid Input")
+        #print("Invalid Input")
+        pass
 
 def data_con(tag,data):
     name= ''
